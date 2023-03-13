@@ -1,0 +1,29 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+# Chrome 드라이버 다운로드: https://sites.google.com/a/chromium.org/chromedriver/downloads
+# Chromedriver의 경로를 아래 코드에 입력합니다.
+driver = webdriver.Chrome('C:\\Users\\bab02\\chrome_driver\\chromedriver.exe')
+
+# Google.com으로 이동
+driver.get("https://www.google.com")
+
+# 검색창 찾기
+search_bar = driver.find_element("name", "q")
+         
+
+# 검색창에 검색어 입력
+search_bar.send_keys("Python tutorial")
+
+# 검색 버튼 클릭
+search_bar.send_keys(Keys.RETURN)
+
+# 검색 결과 페이지에서 모든 링크 찾기
+links = driver.find_elements("tag name", "a")
+
+# 링크 출력
+for link in links:
+    print(link.get_attribute("href"))
+
+# 브라우저 닫기
+driver.quit
